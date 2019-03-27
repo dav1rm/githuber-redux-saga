@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { PropTypes } from 'prop-types';
 import { ActivityIndicator } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -11,6 +11,12 @@ import {
 } from './styles';
 
 class Login extends Component {
+  static propTypes = {
+    loginRequest: PropTypes.func.isRequired,
+    error: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
+  };
+
   state = { username: '' };
 
   handleSubmit = async () => {

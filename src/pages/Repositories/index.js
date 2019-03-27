@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, ActivityIndicator } from 'react-native';
+import { PropTypes } from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,6 +11,16 @@ import {
 } from './styles';
 
 class Repositories extends Component {
+  static propTypes = {
+    loadRepositoriesRequest: PropTypes.func.isRequired,
+    repositories: PropTypes.shape({
+      data: PropTypes.arrayOf({
+        name: PropTypes.string,
+        description: PropTypes.string,
+      }),
+    }).isRequired,
+  };
+
   componentDidMount() {
     const { loadRepositoriesRequest } = this.props;
 
@@ -29,7 +40,6 @@ class Repositories extends Component {
 
   render() {
     const { repositories } = this.props;
-
     return (
       <Container>
         <Header>
